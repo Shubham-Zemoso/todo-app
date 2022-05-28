@@ -11,7 +11,7 @@ export const CREATE_TODO = gql`
   }
 `;
 
-function AddTodo() {
+const AddTodo = () => {
   const [title, setTitle] = useState("");
   const [createTodo, { error }] = useMutation(CREATE_TODO, {
     refetchQueries: [
@@ -37,6 +37,7 @@ function AddTodo() {
         onChange={(e) => setTitle(e.target.value)}
       />
       <button onClick={addNewTodo}>Submit</button>
+      {error && <p style={{color:"red"}}>{error.message}</p>}
     </div>
   );
 }
